@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country - Global Policy Exchange</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="data.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Global Policy Exchange</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="continent.html">Continents</a></li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="systems.html">Systems</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="page-header">
+            <h2 id="country-name">Country profile</h2>
+            <p id="country-meta">Detailed country information will appear here.</p>
+        </section>
+        <section id="country-detail" class="country-detail"></section>
+    </main>
+    <footer>
+        <p>Global Policy Exchange 2026</p>
+    </footer>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || "";
+        }
+
+        const countryQuery = decodeURIComponent(getQueryParam("country"));
+        const country = policyData.getCountryByName(countryQuery);
+        const nameElement = document.getElementById("country-name");
+        const metaElement = document.getElementById("country-meta");
+        const detailSection = document.getElementById("country-detail");
+
+        if (country) {
+            nameElement.textContent = country.name;
+            metaElement.innerHTML = `Population: <strong>${country.population.toLocaleString()}</strong> &bull; Continent: <strong>${country.continent}</strong>`;
+            detailSection.innerHTML = `
+                <article class="country-card">
+                    <h3>Overview of the country</h3>
+                    <p>${country.overview}</p>
+                </article>
+                <article class="country-card">
+                    <h3>What drives the economy</h3>
+                    <p>${country.economicDrivers}</p>
+                </article>
+                <article class="country-card">
+                    <h3>Background on how and why the country joined the United Nations</h3>
+                    <p>${country.unBackground}</p>
+                </article>
+            `;
+        } else if (countryQuery) {
+            nameElement.textContent = "Country not found";
+            metaElement.textContent = "The requested country could not be loaded.";
+            detailSection.innerHTML = `<p class="alert">No country profile is available for "${countryQuery}". <a href="continent.html">Choose another continent</a>.</p>`;
+        } else {
+            nameElement.textContent = "Select a country";
+            metaElement.textContent = "Use the continent page to choose a country overview.";
+            detailSection.innerHTML = `<p class="alert">No country was selected. <a href="continent.html">Start with a continent</a>.</p>`;
+        }
+    </script>
+</body>
+</html>

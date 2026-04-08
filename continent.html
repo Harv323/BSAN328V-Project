@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continent - Global Policy Exchange</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="data.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Global Policy Exchange</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="continent.html">Continents</a></li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="systems.html">Systems</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="page-header">
+            <h2 id="continent-title">Continent</h2>
+            <p id="continent-description">Browse countries by region and explore policy insights from each nation.</p>
+        </section>
+        <section id="country-list-section" class="country-list-section">
+            <div id="country-list" class="country-list"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Global Policy Exchange 2026</p>
+    </footer>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || "";
+        }
+
+        const continent = decodeURIComponent(getQueryParam("continent"));
+        const titleElement = document.getElementById("continent-title");
+        const descriptionElement = document.getElementById("continent-description");
+        const countryListElement = document.getElementById("country-list");
+
+        if (continent && policyData.continents.includes(continent)) {
+            titleElement.textContent = continent;
+            descriptionElement.textContent = `Countries in ${continent}, sorted by population.`;
+            const countries = policyData.getCountriesByContinent(continent);
+
+            if (countries.length === 0) {
+                countryListElement.innerHTML = `<p class="alert">No country data available for ${continent}.</p>`;
+            } else {
+                countryListElement.innerHTML = countries.map(country => `
+                    <article class="country-card">
+                        <div class="card-row">
+                            <div>
+                                <h3>${country.name}</h3>
+                                <p class="text-muted">Population: ${country.population.toLocaleString()}</p>
+                            </div>
+                            <a class="button-link" href="country.html?country=${encodeURIComponent(country.name)}">Overview</a>
+                        </div>
+                    </article>
+                `).join("");
+            }
+        } else if (continent) {
+            titleElement.textContent = "Unknown continent";
+            descriptionElement.textContent = "The selected region was not found. Please choose a valid continent.";
+            countryListElement.innerHTML = `<p class="alert">The continent "${continent}" was not recognized. <a href="index.html">Return home</a> or select a valid continent.</p>`;
+        } else {
+            titleElement.textContent = "Select a continent";
+            descriptionElement.textContent = "Choose a continent to see countries and country overviews.";
+            countryListElement.innerHTML = policyData.continents.map(region => `
+                <article class="country-card">
+                    <div class="card-row">
+                        <div>
+                            <h3>${region}</h3>
+                        </div>
+                        <a class="button-link" href="continent.html?continent=${encodeURIComponent(region)}">View countries</a>
+                    </div>
+                </article>
+            `).join("");
+        }
+    </script>
+</body>
+</html>

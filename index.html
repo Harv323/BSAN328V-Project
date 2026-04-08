@@ -3,31 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Policy Hub</title>
+    <title>Global Policy Exchange (GPX)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Community Policy Hub</h1>
+        <h1>Global Policy Exchange</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="continent.html">Continents</a></li>
                 <li><a href="policies.html">Policies</a></li>
                 <li><a href="systems.html">Systems</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Welcome to Community Policy Hub</h2>
-            <p>This application allows governments to share policies and systems used to improve their communities. Discover effective strategies and important details from various governmental bodies.</p>
-            <a href="https://www.gov.uk" target="_blank">
-                <img src="gov-placeholder.svg" alt="Clickable image linking to the UK Government website for more resources on community improvement">
-            </a>
+        <section class="hero">
+            <h2>Global Policy Exchange (GPX)</h2>
+            <p>Global Policy Exchange is a platform where countries share real-world policies that address issues like healthcare, education, employment, and economic development, helping other nations learn what works and apply successful solutions.</p>
+        </section>
+
+        <section class="map-panel">
+            <h3>Interactive world map</h3>
+            <p>Click a continent to explore country profiles and policy ideas from that region.</p>
+            <div class="map-container">
+                <svg viewBox="0 0 1000 420" aria-label="Interactive world map of continents">
+                    <a href="continent.html?continent=North%20America" title="North America">
+                        <path class="continent" d="M70 80 L220 70 L250 120 L215 170 L170 150 Z" />
+                        <text class="map-label" x="110" y="115">North America</text>
+                    </a>
+                    <a href="continent.html?continent=South%20America" title="South America">
+                        <path class="continent" d="M190 190 L240 180 L260 260 L220 310 L180 280 Z" />
+                        <text class="map-label" x="205" y="235">South America</text>
+                    </a>
+                    <a href="continent.html?continent=Europe" title="Europe">
+                        <path class="continent" d="M390 90 L455 80 L500 110 L465 145 L425 135 Z" />
+                        <text class="map-label" x="410" y="125">Europe</text>
+                    </a>
+                    <a href="continent.html?continent=Africa" title="Africa">
+                        <path class="continent" d="M420 160 L470 150 L520 220 L470 270 L420 255 Z" />
+                        <text class="map-label" x="435" y="205">Africa</text>
+                    </a>
+                    <a href="continent.html?continent=Asia" title="Asia">
+                        <path class="continent" d="M520 90 L650 85 L720 135 L700 190 L610 165 Z" />
+                        <text class="map-label" x="570" y="145">Asia</text>
+                    </a>
+                    <a href="continent.html?continent=Oceania" title="Oceania">
+                        <path class="continent" d="M760 215 L820 210 L850 250 L820 285 L760 275 Z" />
+                        <text class="map-label" x="770" y="245">Oceania</text>
+                    </a>
+                    <a href="continent.html?continent=Antarctica" title="Antarctica">
+                        <path class="continent" d="M220 330 L760 330 L760 375 L220 375 Z" />
+                        <text class="map-label" x="420" y="355">Antarctica</text>
+                    </a>
+                </svg>
+            </div>
         </section>
     </main>
     <footer>
-        <p>Caleb Harvey 2026</p>
+        <p>Global Policy Exchange 2026</p>
     </footer>
 </body>
 </html>
