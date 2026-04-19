@@ -232,6 +232,37 @@ footer {
     color: white;
 }
 
+.continent-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.continent-card {
+    border: 1px solid #dbe7f5;
+    border-radius: 16px;
+    background-color: #fcfdff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-align: center;
+}
+
+.continent-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.continent-card h3 {
+    margin: 1rem;
+    color: #003366;
+}
+
+.continent-card .button-link {
+    margin: 1rem;
+}
+
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
